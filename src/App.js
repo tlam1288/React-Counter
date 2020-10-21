@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 
@@ -21,6 +21,15 @@ const calculateTimeLeft = ()=>{
 
   return timeLeft;
 }
+
+const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+useEffect(()=>{
+  const timer = setTimeOut(()=> {
+    setTimeLeft(calculateTimeLeft());
+  }, 1000);
+  return () => clearTimeout(timer);
+});
 
   return (
     <></>
