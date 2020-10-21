@@ -28,11 +28,30 @@ useEffect(()=>{
   const timer = setTimeOut(()=> {
     setTimeLeft(calculateTimeLeft());
   }, 1000);
+
+  const timerComponents = [];
+
+  Object.keys(timeLeft).forEach((iterval)=>{
+    if(!timeLeft[interval]){
+      return;
+    }
+
+    timerComponents.push(
+      <span>
+        {timeLeft[interval]} {interval}{" "}
+      </span>
+    );
+  });
+
   return () => clearTimeout(timer);
 });
 
+
+
   return (
-    <></>
+    <div>
+      {timerComponents.length ? timerComponents : <span>Time's up!</span> }
+    </div>
   );
 }
 
