@@ -23,33 +23,36 @@ const calculateTimeLeft = ()=>{
 }
 
 const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+const[year] = useState(new Date().getFullYear());
 
 useEffect(()=>{
-  const timer = setTimeOut(()=> {
+  const timer = setTimeout(()=> {
     setTimeLeft(calculateTimeLeft());
   }, 1000);
 
-  const timerComponents = [];
 
-  Object.keys(timeLeft).forEach((iterval)=>{
-    if(!timeLeft[interval]){
-      return;
-    }
-
-    timerComponents.push(
-      <span>
-        {timeLeft[interval]} {interval}{" "}
-      </span>
-    );
-  });
 
   return () => clearTimeout(timer);
 });
 
+const timerComponents = [];
+
+Object.keys(timeLeft).forEach((interval)=>{
+  if(!timeLeft[interval]){
+    return;
+  }
+
+  timerComponents.push(
+    <span>
+      {timeLeft[interval]} {interval}{" "}
+    </span>
+  );
+});
 
 
   return (
     <div>
+      <h1>Tim's Birthday {year} Countdown!!!</h1>
       {timerComponents.length ? timerComponents : <span>Time's up!</span> }
     </div>
   );
